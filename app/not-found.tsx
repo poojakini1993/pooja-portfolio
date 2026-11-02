@@ -7,7 +7,7 @@ import { Home, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-neutral-950 dark:via-purple-950 dark:to-blue-950 flex items-center justify-center px-6 py-20">
+    <div className="portfolio-page not-found-page min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-neutral-950 dark:via-purple-950 dark:to-blue-950 flex items-center justify-center px-6 py-20">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
