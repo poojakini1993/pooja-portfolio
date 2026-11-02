@@ -1,41 +1,54 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, Briefcase, GraduationCap, FileText, Award, ChevronDown, ChevronUp, ArrowRight, ExternalLink } from "lucide-react";
+import { Download, Briefcase, GraduationCap, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const PROFILE = {
-  name: "Pooja Kamalaksha Kini",
-  headshot: "/images/headshot-profile.jpg",
-  resume: "/documents/Pooja-Kini-Resume.pdf",
-  bio: `Pooja Kini is a PhD candidate at Birkbeck, University of London (2022–2026), specialising in Geography, Environment, and Development Studies. Her research is funded by the Mark James studentship and focuses on the intersectional and intergenerational gendered experiences of water stress in urban India. 
+  name: "Pooja Kini",
+  headshot: "/images/pooja-kini-homepage.jpg",
+  resume: "/documents/Pooja_Kini_CV_2026.pdf",
+  bio: `Pooja Kini is an interdisciplinary social researcher working across human geography, urban and environmental governance, applied research and evaluation. Her work examines how institutions, policies and infrastructure shape everyday life, distribute resources and produce unequal experiences of urban environments.
 
-Pooja has ten years of experience as a researcher and monitoring & evaluation specialist across India and the UK, focusing on strategic planning, mixed-methods evaluation, ethnographic research and social impact assessment. Pooja's work reflects a deep commitment to equity, justice, and inclusive research practices.`,
-  tagline: "Interdisciplinary researcher with 10 years' experience across India and the UK in applied research, evaluation, and knowledge management.",
+She recently submitted her PhD in Geography, Environment and Development Studies at Birkbeck, University of London (2022–2026) and was funded by Mark James Studentship. Her doctoral research, based on 12 months of ethnographic fieldwork in Jaipur, India, investigates the intersectional and multiscalar politics of water infrastructure and scarcity, with particular attention to how inequalities are produced and experienced across different scales of urban life.
+
+Alongside her academic research, Pooja has ten years of experience designing and managing mixed-methods research, programme evaluation and monitoring, evaluation and learning (MEL) initiatives across India and the UK. She has worked with research organisations, NGOs, institutional funders and development programmes, translating evidence into practical insights for policy, programme design and organisational learning.
+
+Her approach brings feminist, decolonial and intersectional perspectives into conversation with applied research and policy practice, with a broader interest in how research can contribute to more equitable and just forms of development.`,
 };
 
 const WORK_EXPERIENCE = [
   {
     id: 1,
-    title: "Graduate Teaching Assistant (GTA)",
-    organization: "UCL and LSE",
+    title: "Guest Teacher",
+    organization: "London School of Economics (LSE)",
     location: "London, UK",
-    period: "Sep 2025 - Present",
+    period: "Sep 2025 – Present",
     type: "Current",
     description: [
-      "Assisting with the delivery of the module Geographies of Infrastructure at UCL and Environment: Science and Society at LSE",
+      "Assisting with the delivery of the module Environment: Science and Society at LSE",
       "Leading small-group seminars and facilitated discussions to support student engagement with course material",
       "Provided academic support and guidance to students, including feedback on assignments and class participation"
     ]
   },
   {
     id: 2,
-    title: "Data Team (Part-time)",
+    title: "Postgraduate Teaching Assistant",
+    organization: "University College London (UCL)",
+    location: "London, UK",
+    period: "Sep 2025 – Dec 2025",
+    description: [
+      "Assisting with the delivery of the module Geographies of Infrastructure at UCL",
+      "Leading small-group seminars and facilitated discussions to support student engagement with course material",
+      "Provided academic support and guidance to students, including feedback on assignments and class participation"
+    ]
+  },
+  {
+    id: 3,
+    title: "Data Consultant (Part-time)",
     organization: "Woman's Trust",
     location: "London, UK",
-    period: "Feb 2023 - Aug 2023 & Jan 2025 - Dec 2025",
-    type: "Contract",
+    period: "Feb 2023 – Aug 2023; Jan 2025 – Dec 2025",
     description: [
       "Improved data systems (Oasis CRM, CORE, Excel, Power BI); transitioned from MS Access and Excel to Power BI",
       "Produced impact reports for funders, Councils, and Trustees",
@@ -43,12 +56,11 @@ const WORK_EXPERIENCE = [
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "IML Consultant (Part-time)",
     organization: "Purpose India",
     location: "India",
-    period: "Oct 2023 - Aug 2024",
-    type: "Contract",
+    period: "Oct 2023 – Aug 2024",
     description: [
       "Led research on Just Transition in the brick kiln sector in North India funded by MacArthur",
       "Designed and implemented project-level indicators, logframes, and secondary research",
@@ -57,11 +69,11 @@ const WORK_EXPERIENCE = [
     ]
   },
   {
-    id: 4,
+    id: 5,
     title: "Doctoral Researcher",
     organization: "Birkbeck, University of London",
     location: "London, UK",
-    period: "Oct 2022 - Present",
+    period: "Oct 2022 – Present",
     type: "Current",
     description: [
       "Leading a fully funded field-based research on intersectional and intergenerational gendered experiences of water stress in urban India, with a focus on informal settlements in Jaipur",
@@ -71,11 +83,11 @@ const WORK_EXPERIENCE = [
     ]
   },
   {
-    id: 5,
-    title: "Manager - Research and Knowledge Management",
+    id: 6,
+    title: "Manager, Research and Knowledge Management",
     organization: "PCI India",
     location: "India",
-    period: "Dec 2020 - Aug 2022",
+    period: "Dec 2020 – Aug 2022",
     description: [
       "Led knowledge management for programmes funded by the Bill & Melinda Gates Foundation",
       "Designed and led more than 10 India-wide impact assessments for gender-focused projects, specifically on ending child marriage and violence against women",
@@ -83,22 +95,22 @@ const WORK_EXPERIENCE = [
     ]
   },
   {
-    id: 6,
-    title: "National Programme Associate - M&E",
+    id: 7,
+    title: "National Programme Associate – Monitoring and Evaluation",
     organization: "The Hunger Project India",
     location: "India",
-    period: "Aug 2018 - Nov 2020",
+    period: "Aug 2018 – Nov 2020",
     description: [
       "Managed M&E for women's political leadership and early marriage prevention programmes across six states funded by BMZ, AJWS, Azim Premji Foundation",
       "Developed digital MIS in collaboration with consultants; conducted baseline, midline, and endline studies"
     ]
   },
   {
-    id: 7,
-    title: "Project Lead - Results and Insights",
+    id: 8,
+    title: "Team Lead",
     organization: "CMS India",
     location: "India",
-    period: "Aug 2016 - Apr 2017",
+    period: "Aug 2016 – Apr 2017",
     description: [
       "Led evaluations on agriculture, health, and sanitation for programmes by Cotton Connect, AKRSP, TATA Trusts, Solidaridad, UNICEF C4D",
       "Drafted competitive proposals and designed data collection tools"
@@ -109,93 +121,49 @@ const WORK_EXPERIENCE = [
 const EDUCATION = [
   {
     id: 1,
-    degree: "PhD in Geography, Environment, Development Studies",
+    degree: "PhD in Geography, Environment and Development Studies",
     institution: "Birkbeck, University of London",
-    period: "Oct 2022 - Present",
-    note: "Funded by Mark James studentship"
+    period: "2022–2026",
+    note: "Thesis submitted September 2026; degree pending. Funded by Mark James Studentship."
   },
   {
     id: 2,
     degree: "Master's in Sustainable Development Practice",
     institution: "TERI School of Advanced Studies",
     location: "Delhi, India",
-    period: "Aug 2014 - Jun 2016"
+    period: "Aug 2014 – Jun 2016"
   },
   {
     id: 3,
     degree: "Bachelor's (Honors) in Anthropology",
     institution: "Hansraj, University of Delhi",
     location: "India",
-    period: "Jul 2011 - Jun 2014"
-  }
-];
-
-const PUBLICATIONS = [
-  {
-    title: "A contextual understanding of Just Transitions in Uttar Pradesh's brick industry",
-    authors: "Bhullar, H. & Kini, P.",
-    journal: "GeoProgress Journal",
-    year: "2025",
-    link: "https://www.geoprogress-edition.eu/a-contextual-understanding-of-just-transitions-in-uttar-pradeshs-brick-industry/"
-  },
-  {
-    title: "Intersectional gendered experiences of water infrastructure: A case study of Lakshman Basti",
-    authors: "Kini, P.",
-    journal: "UNESCO WWAP",
-    year: "2026"
-  }
-];
-
-const PRESENTATIONS = [
-  {
-    title: "Tanker, Taps, and Tanks: Case Study of Lakshman Basti",
-    event: "UNESCO WWAP Workshop",
-    location: "Pisa, Italy",
-    date: "Jan 2025"
-  },
-  {
-    title: "Water Practices in Urban India using a Feminist Political Ecology Approach",
-    event: "RGS-IBG Annual Conference",
-    location: "London, UK",
-    date: "Sep 2023"
-  },
-  {
-    title: "Intersectional and Intergenerational Water Practices in Urban India",
-    event: "POLLEN Conference",
-    location: "Durban, South Africa",
-    date: "Jun 2023"
-  },
-  {
-    title: "Exploring Mother-Daughter Relationships in Jharkhand",
-    event: "International Population Conference",
-    location: "Hyderabad, India",
-    date: "2021"
+    period: "Jul 2011 – Jun 2014"
   }
 ];
 
 const SKILLS = [
   {
-    category: "Research & Evaluation",
-    items: ["Mixed-methods design", "Logframes", "Theory of change"]
+    category: "Research and evaluation",
+    items: ["Mixed-methods research design", "Programme evaluation and impact assessment", "Monitoring, evaluation and learning", "Theory of Change and logframe development", "Baseline, midline and endline studies"]
   },
   {
-    category: "Quantitative Analysis",
-    items: ["SPSS", "STATA", "Power BI", "Microsoft Excel"]
+    category: "Research methods",
+    items: ["Ethnographic research", "Semi-structured interviews and life histories", "Focus group discussions", "Participatory mapping and observation", "Survey design and quantitative analysis", "Policy and documentary analysis"]
   },
   {
-    category: "Qualitative Analysis",
-    items: ["Atlas.ti", "Interview coding", "Narrative analysis"]
+    category: "Data and analytical tools",
+    items: ["STATA, SPSS, Microsoft Excel and Power BI", "ATLAS.ti and NVivo"]
   },
   {
-    category: "Knowledge Management",
-    items: ["Policy briefs", "Peer-reviewed articles", "Evaluation reports"]
+    category: "Research and policy communication",
+    items: ["Policy briefs and evidence synthesis", "Evaluation and donor reports", "Peer-reviewed publications", "Stakeholder workshops and knowledge-sharing"]
   },
   {
-    category: "Expertise",
-    items: ["Gender and climate justice", "Governance", "Sustainable development"]
+    category: "Research areas",
+    items: ["Urban and environmental governance", "Water, infrastructure and inequality", "Feminist and decolonial geography", "Gender and social justice", "Just transitions and sustainable development"]
   }
 ];
-
 interface TimelineItemProps {
   item: {
     id: number;
@@ -218,6 +186,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
 
   return (
     <motion.div
+      id={item.title === "Guest Teacher" ? "teaching" : undefined}
       initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -247,7 +216,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
               )}
             </div>
             {item.type && (
-              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 whitespace-nowrap w-fit">
+              <span className="current-badge">
                 {item.type}
               </span>
             )}
@@ -301,27 +270,11 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
 
 export default function ProfilePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="portfolio-page bio-page min-h-screen overflow-x-clip bg-white dark:bg-neutral-950">
       {/* Compact Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900 py-12">
         <div className="absolute top-10 right-20 w-48 h-48 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-20 w-64 h-64 bg-cyan-200/20 dark:bg-cyan-400/10 rounded-full blur-3xl"></div>
-
-        {/* Easter Egg: Cloud Artwork */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 0.25, y: 0 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="absolute top-16 left-32 w-20 h-20 opacity-25 hover:opacity-50 transition-opacity duration-300"
-        >
-          <Image
-            src="/images/art-cloud.jpg"
-            alt="Decorative cloud artwork"
-            fill
-            className="object-contain"
-            sizes="80px"
-          />
-        </motion.div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <motion.h1
@@ -330,19 +283,19 @@ export default function ProfilePage() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent"
           >
-            Profile
+            About Pooja Kini
           </motion.h1>
         </div>
       </section>
 
       {/* Bio Section */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-5 gap-12 items-start">
+        <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-2"
+            className="w-full max-w-md mx-auto lg:col-span-2 lg:max-w-none"
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur-2xl opacity-20"></div>
@@ -363,26 +316,20 @@ export default function ProfilePage() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="md:col-span-3"
+            className="lg:col-span-3"
           >
-            <h2 className="text-3xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
-              About {PROFILE.name}
-            </h2>
             <div className="prose prose-lg dark:prose-invert max-w-none">
               <p className="text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed whitespace-pre-line mb-6">
                 {PROFILE.bio}
-              </p>
-              <p className="text-base text-neutral-600 dark:text-neutral-400 italic">
-                {PROFILE.tagline}
               </p>
             </div>
             
             <a
               href={PROFILE.resume}
               download
-              className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg mt-6"
+              className="cv-link about-cv-link mt-6"
             >
-              <Download className="w-5 h-5" /> Download Full Resume
+              <Download className="w-5 h-5" aria-hidden="true" /> Download CV
             </a>
           </motion.div>
         </div>
@@ -476,184 +423,28 @@ export default function ProfilePage() {
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto"></div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
             {SKILLS.map((skill, index) => (
-              <motion.div
-                key={index}
+              <motion.article
+                key={skill.category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.45, delay: index * 0.04 }}
                 viewport={{ once: true }}
-                className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-700"
+                className="border-t border-neutral-200 pt-5"
               >
-                <h3 className="text-lg font-bold mb-4 text-blue-600 dark:text-blue-400">
+                <h3 className="text-xl font-semibold mb-3 text-blue-600 dark:text-blue-400">
                   {skill.category}
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {skill.items.map((item, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
+                <ul className="skills-list">
+                  {skill.items.map((item) => <li className="skill-bubble" key={item}>{item}</li>)}
+                </ul>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Publications & Presentations - Highlights Only */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
-              Research Highlights
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto"></div>
-          </motion.div>
-
-          {/* Featured Publications */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100 flex items-center justify-center gap-2">
-              <FileText className="w-6 h-6 text-blue-600" />
-              Recent Publications
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              {PUBLICATIONS.slice(0, 2).map((pub, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-700"
-                >
-                  <h4 className="text-lg font-semibold mb-2 text-neutral-900 dark:text-neutral-100">
-                    {pub.title}
-                  </h4>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-1">
-                    {pub.authors}
-                  </p>
-                  <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
-                    {pub.journal} ({pub.year})
-                  </p>
-                  {pub.link && (
-                    <Link
-                      href={pub.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mt-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors text-sm"
-                    >
-                      Learn More <ExternalLink className="w-3 h-3" />
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link
-                href="/publications#publications"
-                className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
-              >
-                View All Publications <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-
-          {/* Featured Presentations */}
-          <div>
-            <h3 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-neutral-100 flex items-center justify-center gap-2">
-              <Award className="w-6 h-6 text-blue-600" />
-              Selected Presentations
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              {PRESENTATIONS.slice(0, 2).map((pres, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-700"
-                >
-                  <h4 className="text-lg font-semibold mb-2 text-neutral-900 dark:text-neutral-100">
-                    {pres.title}
-                  </h4>
-                  <p className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-1">
-                    {pres.event}
-                  </p>
-                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                    {pres.location} • {pres.date}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            <div className="text-center">
-              <Link
-                href="/publications#presentations"
-                className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
-              >
-                View All Presentations <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Creative Work Section */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-3 text-neutral-900 dark:text-neutral-100">
-              Creative Pursuits
-            </h2>
-            <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-              Exploring themes of nature, water, and social narratives through mixed-media art
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { src: "/images/art-starfish-detail.jpg", alt: "Starfish sculpture with shells and beadwork" },
-              { src: "/images/art-starfish.jpg", alt: "Handcrafted coral starfish" },
-              { src: "/images/art-cloud.jpg", alt: "Whimsical cloud with stars" },
-              { src: "/images/art-face.jpg", alt: "Abstract colorful portrait" }
-            ].map((artwork, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow group"
-              >
-                <Image
-                  src={artwork.src}
-                  alt={artwork.alt}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

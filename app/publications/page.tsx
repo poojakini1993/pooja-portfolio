@@ -86,7 +86,7 @@ export default function PublicationsPage() {
   const presentations = PUBLICATIONS.filter(p => p.type === "presentation");
 
   return (
-    <div className="min-h-screen bg-white dark:bg-neutral-950">
+    <div className="portfolio-page publications-page min-h-screen bg-white dark:bg-neutral-950">
       {/* Hero Section */}
       <section id="publications" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900 py-20">
         <div className="absolute top-10 right-20 w-48 h-48 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl"></div>

@@ -1,112 +1,84 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
+const NAV_ITEMS = [
+  { href: "/", label: "Home" },
+  { href: "/bio", label: "About" },
+  { href: "/projects", label: "Evaluation & Policy" },
+  { href: "/publications", label: "Publications & conferences" },
+  { href: "/teaching", label: "Teaching" },
+];
+
 export default function Navbar() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [activeHash, setActiveHash] = useState("");
+  const closeMenu = () => setIsMenuOpen(false);
 
-  const linkClass = (path: string) =>
-    `relative pb-1 transition-all duration-300 ${
-      pathname === path
-        ? "text-blue-600 font-semibold after:absolute after:left-0 after:-bottom-[2px] after:h-[2px] after:w-full after:bg-blue-600 after:content-['']"
-        : "text-neutral-700 dark:text-neutral-200 hover:text-blue-600"
-    }`;
+  useEffect(() => {
+    const syncHash = () => setActiveHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
-  const scrollToContact = () => {
-    setIsMenuOpen(false);
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/" && (!activeHash || activeHash === "#home");
+    const [targetPath, targetHash] = href.split("#");
+    const route = targetPath || "/";
+    if (targetHash) return pathname === route && activeHash === `#${targetHash}`;
+    if (pathname !== route) return false;
+    return true;
   };
 
+  const navLinkClass = (href: string) =>
+    `site-nav-link${isActive(href) ? " is-active" : ""}`;
+
   return (
-    <header className="w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-        {/* Desktop Layout */}
-        <div className="hidden md:flex justify-between items-center">
-          <span className="font-bold text-xl tracking-tight">Pooja K Kini</span>
-          <div className="flex items-center gap-8 text-sm font-medium">
-            <Link href="/" className={linkClass("/")}>
-              Home
-            </Link>
-            <Link href="/bio" className={linkClass("/bio")}>
-              Profile
-            </Link>
-            <Link href="/projects" className={linkClass("/projects")}>
-              Projects
-            </Link>
-            <Link href="/publications" className={linkClass("/publications")}>
-              Publications
-            </Link>
-            <button
-              onClick={() => { window.location.href = '/#contact'; }}
-              className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
-            >
-              Say Hello 👋
-            </button>
+    <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <header className="site-nav-header">
+        <nav className="page-shell site-nav" aria-label="Main navigation">
+          <div className="site-nav-desktop">
+            <div className="site-nav-links">
+              {NAV_ITEMS.map((item) => (
+                <Link key={item.label} href={item.href} className={navLinkClass(item.href)} aria-current={isActive(item.href) ? "page" : undefined}>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            <a href="/documents/Pooja_Kini_CV_2026.pdf" download className="cv-link nav-cv-link">Download CV</a>
           </div>
-        </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden">
-          <div className="flex justify-between items-center">
-            <span className="font-bold text-lg tracking-tight">Pooja K Kini</span>
+          <div className="site-nav-mobile-actions">
+            <a href="/documents/Pooja_Kini_CV_2026.pdf" download className="cv-link nav-cv-link">Download CV</a>
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-neutral-700 dark:text-neutral-200 hover:text-blue-600 transition-colors"
-              aria-label="Toggle menu"
+              type="button"
+              className="menu-toggle"
+              onClick={() => setIsMenuOpen((open) => !open)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X aria-hidden="true" size={23} /> : <Menu aria-hidden="true" size={23} />}
             </button>
           </div>
 
-          {/* Mobile Menu */}
           {isMenuOpen && (
-            <div className="absolute top-full left-0 right-0 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 shadow-lg">
-              <div className="flex flex-col gap-4 p-6">
-                <Link 
-                  href="/" 
-                  className={linkClass("/")}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
+            <div id="mobile-menu" className="site-nav-mobile-menu">
+              {NAV_ITEMS.map((item) => (
+                <Link key={item.label} href={item.href} className={navLinkClass(item.href)} aria-current={isActive(item.href) ? "page" : undefined} onClick={closeMenu}>
+                  {item.label}
                 </Link>
-                <Link 
-                  href="/bio" 
-                  className={linkClass("/bio")}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Profile
-                </Link>
-                <Link 
-                  href="/projects" 
-                  className={linkClass("/projects")}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Projects
-                </Link>
-                <Link 
-                  href="/publications" 
-                  className={linkClass("/publications")}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Publications
-                </Link>
-                <button
-                  onClick={() => { setIsMenuOpen(false); window.location.href = '/#contact'; }}
-                  className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
-                >
-                  Say Hello 👋
-                </button>
-              </div>
+              ))}
             </div>
           )}
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
+    </>
   );
 }
